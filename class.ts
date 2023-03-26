@@ -1,20 +1,42 @@
 // class
 // constructor:-  it is responsible for creating an instance of this class.
 // typescript have either parameterized or  default constructor
-class Employee {
+import { Login, User } from "./interface";
+interface Address {
+  street: string;
+  city: string;
+  pin: number;
+}
+
+class Employee implements Login {
   id: number;
-  name: string;
+  protected name: string;
   #age: number;
-  protected address: string;
+  address: Address;
   static getEmpcount(): number {
     return 10;
   }
+  // getter
+  get empAge(): number {
+    return this.#age;
+  }
+  // setter
+  set empAge(age: number) {
+    this.#age = age;
+  }
   // constructor
-  constructor(id: number, name: string, age: number, address: string) {
+  constructor(id: number, name: string, age: number, address: Address) {
     this.id = id;
     this.name = name;
     this.#age = age;
     this.address = address;
+  }
+  login(): User {
+    return {
+      name: "shubham",
+      age: 22,
+      id: 1,
+    };
   }
   // methods
   getNameWithAddress(): string {
@@ -22,13 +44,17 @@ class Employee {
   }
 }
 
-let newEmp = new Employee(1, "shubham kumar", 22, "bangalore");
+let newEmp = new Employee(1, "shubham kumar", 22, {
+  street: "JP Nagar",
+  city: "Bangalore",
+  pin: 45678,
+});
 
 console.log(newEmp.getNameWithAddress());
 console.log(Employee.getEmpcount());
 
 class Manager extends Employee {
-  constructor(id: number, name: string, age: number, address: string) {
+  constructor(id: number, name: string, age: number, address: Address) {
     super(id, name, age, address);
   }
   getNameWithAddress(): string {
@@ -36,5 +62,9 @@ class Manager extends Employee {
   }
 }
 
-const newMang = new Manager(2, "Kajal", 20, "bangalore");
+const newMang = new Manager(2, "theshubamy", 20, {
+  street: "JayNagar Nagar",
+  city: "Bangalore",
+  pin: 45678,
+});
 console.log(newMang.getNameWithAddress());
