@@ -31,6 +31,8 @@ function sums(a: number, b: number, ...c: number[]): number {
 }
 console.log(sums(2, 3, ...[1, 2, 3]));
 console.log(sums(2, 3, 4, 5, 6, 7, 8, 9));
+
+
 // genric function
 
 function getItems<Type>(item: Type[]): Type[] {
